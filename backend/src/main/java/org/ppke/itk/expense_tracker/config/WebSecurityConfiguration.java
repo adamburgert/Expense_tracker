@@ -58,11 +58,7 @@ public class WebSecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-<<<<<<< HEAD
-        configuration.addAllowedOriginPattern("http://localhost:4200"); 
-=======
-        configuration.addAllowedOriginPattern("http://localhost:42705");
->>>>>>> 58bbcd1 (GET, PUT, DELETE, POST, fixed)
+        configuration.addAllowedOriginPattern("http://localhost:4200");
         configuration.addAllowedMethod("*"); // Allow all HTTP methods
         configuration.addAllowedHeader("*"); // Allow all headers
         configuration.setAllowCredentials(true); // Allow credentials like Authorization headers
