@@ -6,7 +6,8 @@ create table users
     email      varchar,
     password   varchar,
     username   varchar,
-    role       varchar
+    role       varchar,
+    name       varchar
 );
 
 alter table users

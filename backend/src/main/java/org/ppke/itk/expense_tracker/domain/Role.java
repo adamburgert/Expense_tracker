@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,5 +25,9 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    @Column(unique = true)
+    private RoleName roleName;
 
 }

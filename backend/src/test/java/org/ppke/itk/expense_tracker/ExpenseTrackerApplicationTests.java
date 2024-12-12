@@ -109,8 +109,7 @@ public class ExpenseTrackerApplicationTests {
 		verify(expenseService, times(1)).createExpense(any(Expense.class));
 	}
 
-	// Add tests for other endpoints (update, delete, etc.) following the same pattern.
-	// Example for delete:
+
 	@Test
 	public void testDeleteExpense() throws Exception {
 		doNothing().when(expenseService).deleteExpense(1L);

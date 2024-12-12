@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.EntityNotFoundException;
 import org.ppke.itk.expense_tracker.domain.Role;
+import org.ppke.itk.expense_tracker.domain.RoleName;
 import org.ppke.itk.expense_tracker.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:38263")
+@CrossOrigin(origins = "http://localhost:42705")
 @RestController
 @RequestMapping("/api/roles")
-@Tag(name = "Roles") // Add a tag for grouping endpoints
+@Tag(name = "Roles")
 public class RoleController {
 
     private final RoleService roleService;
@@ -77,22 +77,5 @@ public class RoleController {
     }
 
 
-    @PostMapping("/assignRole/{userId}/roles/{roleName}")
-    @Operation(summary = "Assign Role to User")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK - Role assigned successfully"),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Error assigning role")
-    })
-    @Parameter(in = ParameterIn.PATH, name = "userId", description = "User ID", required = true)
-    @Parameter(in = ParameterIn.PATH, name = "roleName", description = "Role Name", required = true)
-    public ResponseEntity<String> assignRoleToUser(
-            @PathVariable Long userId,
-            @PathVariable String roleName) {
-        try {
-            roleService.assignRoleToUser((userId), roleName);
-            return ResponseEntity.ok("Role assigned successfully");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error assigning role: " + e.getMessage());
-        }
-    }
+
 }

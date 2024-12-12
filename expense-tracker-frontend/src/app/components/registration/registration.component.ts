@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {Router, RouterLink} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgForOf } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -29,29 +27,17 @@ export class RegistrationComponent implements OnInit {
   roles: string[] = ['admin', 'USER'];
   selectedRole: string = '';
 
-
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
-  ) {
-  }
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onRegister(): void {
     this.authService.register(this.user).subscribe(
       (response) => {
         console.log('Registration successful:', response);
-
-        if (response && response.token) {
-          // Store the token securely in localStorage
-          localStorage.setItem('authToken', response.token);
-          console.log('JWT token stored in localStorage');
-        }
-
-
         this.router.navigate(['/login']);
       },
       (error) => {

@@ -21,10 +21,7 @@ public class ExpenseTrackerApplication {
 		SpringApplication.run(ExpenseTrackerApplication.class, args);
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 
 
 }

@@ -51,7 +51,6 @@ public class ReportService {
     }
     public Report updateReport(Long id, Report updatedReport) {
         return reportRepository.findById(id).map(existingReport -> {
-            // Update fields if they are provided in the request body
             if (updatedReport.getReportType() != null) {
                 existingReport.setReportType(updatedReport.getReportType());
             }

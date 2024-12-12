@@ -1,17 +1,9 @@
 <div class="container">
   <h2>User Profile</h2>
 
-  <div *ngIf="error" class="alert alert-danger">
-    {{ error }}
-  </div>
 
-  <div *ngIf="loading" class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
 
-  <div *ngIf="!loading && !error">
+
     <form (ngSubmit)="onUpdateUserProfile()">
       <div class="form-group">
         <label for="username">Username:</label>
@@ -54,21 +46,50 @@
       </button>
     </form>
 
+  <button (click)="onLogoutClick()" class="btn logout-btn">Logout</button>
+  <button (click)="deleteUser()" class="btn delete-btn">Delete Account</button>
 
 
-    <button
-      class="logout-btn mt-3"
-      (click)="logout()"
-      [disabled]="loading"
-    >
 
-      <ul>
-        <li *ngFor="let user of users">
-          {{ user.username }} (ID: {{ user.id }})
-          <button (click)="deleteUser(user.id)">Delete</button>
-        </li>
-      </ul>
-      Logout
-    </button>
+
   </div>
-</div>
+
+<style>
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Styling for the 'Logout' button */
+  .logout-btn {
+    background-color: #4CAF50;  /* Green */
+    color: white;
+  }
+
+  .logout-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Small lift on hover */
+  }
+
+  /* Styling for the 'Delete Account' button */
+  .delete-btn {
+    background-color: #f44336;  /* Red */
+    color: white;
+  }
+
+  .delete-btn:hover {
+    background-color: #e53935;
+    transform: translateY(-2px);
+  }
+
+
+  .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+</style>

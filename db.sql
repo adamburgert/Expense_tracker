@@ -1,30 +1,28 @@
 -- we don't know how to generate root <with-no-name> (class Root) :(
 
-comment on database postgres is 'default administrative connection database';
+create sequence categories_id_seq;
+
+alter sequence categories_id_seq owner to "user";
 
 create sequence categories_user_id_seq;
 
 alter sequence categories_user_id_seq owner to "user";
 
-create sequence integer;
-
-alter sequence integer owner to "user";
-
-create sequence categories_id_seq;
-
-alter sequence categories_id_seq owner to "user";
-
-create sequence roles_id_seq;
-
-alter sequence roles_id_seq owner to "user";
-
 create sequence expenses_seq;
 
 alter sequence expenses_seq owner to "user";
 
+create sequence integer;
+
+alter sequence integer owner to "user";
+
 create sequence report_seq;
 
 alter sequence report_seq owner to "user";
+
+create sequence roles_id_seq;
+
+alter sequence roles_id_seq owner to "user";
 
 create sequence roles_seq;
 
@@ -48,10 +46,6 @@ create table categories
 alter table categories
     owner to "user";
 
-alter sequence categories_user_id_seq owned by categories.user_id;
-
-alter sequence integer owned by categories.category_id;
-
 create table expenses
 (
     price       double precision,
@@ -72,6 +66,20 @@ create table expenses
 );
 
 alter table expenses
+    owner to "user";
+
+create table report
+(
+    id           bigserial,
+    created_at   timestamp,
+    description  varchar,
+    total_amount double precision,
+    file_path    varchar,
+    report_type  varchar,
+    updated_at   timestamp
+);
+
+alter table report
     owner to "user";
 
 create table roles
@@ -103,19 +111,5 @@ create table users
 );
 
 alter table users
-    owner to "user";
-
-create table report
-(
-    id           bigserial,
-    created_at   timestamp,
-    description  varchar,
-    total_amount double precision,
-    file_path    varchar,
-    report_type  varchar,
-    updated_at   timestamp
-);
-
-alter table report
     owner to "user";
 

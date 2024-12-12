@@ -43,7 +43,6 @@ public class RoleService {
         Role role = roleRepository.findByName(roleName)
                 .orElseThrow(() -> new IllegalArgumentException("Role not found: " + roleName));
 
-        // Add the Role object to the User's roles
         user.getRoles().add(role);
         userRepository.save(user); // Persist the changes
     }

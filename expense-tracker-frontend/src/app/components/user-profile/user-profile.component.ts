@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,10 +21,9 @@ export class UserProfileComponent implements OnInit {
   loading = false;
   userProfile: any = {};
   error: string | undefined;
-  users:  any = {};
-
-
-  constructor(private userService: UserService, protected router: Router) {}
+  users: any = {};
+  id: number = 0;
+  constructor(private userService: UserService, protected router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -72,10 +72,8 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-
-
-  deleteUser(userId: number) {
-    this.userService.deleteUser(userId).subscribe({
+  deleteUser() {
+    this.userService.deleteUser(this.id).subscribe({
       next: (message: any) => {
         console.log(message);
       },
@@ -86,14 +84,19 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  logout(): Observable<any> {
+    const url = `${this.userService.apiUrl}/logout`;
+    return this.http.post(url, {}).pipe(
+      tap(() => {
+        this.router.navigate(['/home']);
+      })
+    );
+  }
 
-
-
-
-  logout(): void {
-    sessionStorage.clear();
-    localStorage.clear();
-    document.cookie = 'JSESSIONID=; Max-Age=0';
-    this.router.navigate(['/login']);
+  onLogoutClick(): void {
+    this.logout().subscribe({
+      next: () => console.log('Logged out successfully'),
+      error: (err) => console.error('Logout failed', err)
+    });
   }
 }
