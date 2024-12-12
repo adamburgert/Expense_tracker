@@ -58,7 +58,7 @@ export class UserService {
 
 
   updateUserProfile(userProfile: any): Observable<any> {
-    const token = localStorage.getItem('your256bitSecretKeyYour256bitSecretKeyvz9ibgzp9bgzoiboivzivgizvzi8vfg8tzft976fctouvtgouvc579cdti8'); // Replace 'accessToken' with your actual key name
+    const token = localStorage.getItem('your256bitSecretKeyYour256bitSecretKeyvz9ibgzp9bgzoiboivzivgizvzi8vfg8tzft976fctouvtgouvc579cdti8'); 
 
     const headers = new HttpHeaders({
       'Authorization': token ? `Bearer ${token}` : ''
