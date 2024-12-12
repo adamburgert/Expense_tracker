@@ -21,7 +21,7 @@ export class UserService {
     return this.http.post(url, credentials).pipe(
       tap((response: any) => {
         if (response && response.token) {
-          localStorage.setItem('***REMOVED***', response.token);
+          localStorage.setItem('', response.token);
         }
       }),
       catchError(this.handleError)
@@ -58,7 +58,7 @@ export class UserService {
 
 
   updateUserProfile(userProfile: any): Observable<any> {
-    const token = localStorage.getItem('***REMOVED***'); // Replace 'accessToken' with your actual key name
+    const token = localStorage.getItem(''); 
 
     const headers = new HttpHeaders({
       'Authorization': token ? `Bearer ${token}` : ''
