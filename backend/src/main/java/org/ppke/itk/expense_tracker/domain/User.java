@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -24,8 +25,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Setter
+    @Getter
     @Column(nullable = false)
     private String password;
+    private String name;
 
     @Getter
     @Column(nullable = false)
@@ -66,5 +70,7 @@ public class User {
         this.roles = roles;
         this.updatedAt = LocalDateTime.now();
     }
+
+
 
 }

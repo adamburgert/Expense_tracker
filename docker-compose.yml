@@ -11,6 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
       - ./expense-tracker.sql:/docker-entrypoint-initdb.d/expense-tracker.sql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
     networks:
       - expense-tracker-network
 

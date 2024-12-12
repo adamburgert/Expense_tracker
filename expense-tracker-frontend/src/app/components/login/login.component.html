@@ -2,7 +2,7 @@
   <div class="login-form">
     <h2 class="title">Login</h2>
 
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <div class="input-group">
         <input
           type="text"
@@ -39,22 +39,24 @@
         <label for="password">Password</label>
       </div>
 
-
-      <button type="submit" class="submit-btn">Login</button>
+      <!-- Change ngSubmit to (click) for button click event -->
+      <button type="button" (click)="Login()" class="submit-btn">Login</button>
     </form>
-
-
-
-
-
-
 
     <p class="redirect-link">
       Don't have an account? <a routerLink="/register">Register here</a>
     </p>
   </div>
-  <button (click)="onLogout()" class="logout-btn">Logout</button>
 </div>
+
+
+
+
+
+
+
+
+
 
 <style>
   /* General Reset */

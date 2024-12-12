@@ -12,12 +12,16 @@ export class NotificationService {
   public notification$ = this.notificationSubject.asObservable();
 
   private apiUrl = '/api/notifications/getLatestNotifications';
+  private pollingIntervalId: any;
 
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
-  // Fetch notifications every 5 seconds (polling)
   startPolling(userId: number) {
-    setInterval(() => {
+    if (this.pollingIntervalId) {
+      clearInterval(this.pollingIntervalId);
+    }
+
+    this.pollingIntervalId = setInterval(() => {
       this.http.get<string[]>(`${this.apiUrl}?userId=${userId}`)
         .subscribe((notifications) => {
           if (notifications.length > 0) {
@@ -26,15 +30,25 @@ export class NotificationService {
               this.notificationSubject.next(notification);
             });
           }
+        }, error => {
+          console.error('Error fetching notifications', error);
         });
     }, 5000);
+  }
+
+  stopPolling() {
+    if (this.pollingIntervalId) {
+      clearInterval(this.pollingIntervalId);
+    }
   }
 
   private showDialog(notification: string) {
     this.dialog.open(NotificationDialogComponent, {
       data: notification,
       width: '400px',
-      height: '200px'
+      height: '200px',
+    }).afterClosed().subscribe(() => {
+      console.log('Dialog was closed');
     });
   }
 }

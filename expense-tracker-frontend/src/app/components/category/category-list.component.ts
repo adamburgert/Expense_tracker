@@ -117,7 +117,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.category = {date: '', amount: 0, totalPrice: 0, id: 0, name: '', description: '', price: 0, created_at: ''}; // Reset form values
+    this.category = {date: '', amount: 0, totalPrice: 0, id: 0, name: '', description: '', price: 0, created_at: ''};
     this.isEditing = false;
   }
 
