@@ -1,0 +1,106 @@
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f4f7fc;
+}
+
+/* Overview Section */
+.overview-section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.search-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Total Expenses Section */
+.total-expenses {
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Expense Breakdown Section */
+.expense-category-breakdown {
+  margin-top: 20px;
+}
+
+.expense-category-breakdown ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.expense-category-breakdown li {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Expenses Table */
+.expense-table-container {
+  margin-top: 40px;
+}
+
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.expense-table th, .expense-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.expense-table th {
+  background-color: #f8f9fa;
+}
+
+.expense-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.expense-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
