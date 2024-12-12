@@ -13,6 +13,7 @@ The Expense Tracker Application is a comprehensive full-stack solution for manag
 - **Backend**: Spring Boot RESTful APIs with comprehensive endpoint mappings.
 - **Database**: PostgreSQL for robust and structured data management.
 - **Containerization**: Fully Dockerized architecture for deployment convenience.
+Security with Oauth2
 
 ---
 
