@@ -173,6 +173,6 @@ export const routes: Routes = [
 
 ## Contact
 
-For issues or inquiries, contact the project maintainer at [burgertadam1@gmail.com].
+For issues or inquiries, contact the project maintainer at [burgertadam@gmail.com].
 
 ---
