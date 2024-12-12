@@ -22,13 +22,8 @@ export class UserService {
     const url = `${this.apiUrl}/login/{id}`;
     return this.http.post(url, credentials).pipe(
       tap((response: any) => {
-<<<<<<< HEAD
-        if (response && response.token) {
-          localStorage.setItem('', response.token);
-=======
         if (response) {
           console.log('Login successful:', response);
->>>>>>> 9aa444a (Resolved merge conflicts)
         }
       }),
       catchError(this.handleError)
@@ -49,18 +44,10 @@ export class UserService {
   }
 
   updateUserProfile(userProfile: any): Observable<any> {
-<<<<<<< HEAD
-    const token = localStorage.getItem(''); 
-=======
-<<<<<<< HEAD
-    const token = localStorage.getItem(''); 
-=======
     return this.http.put(`${this.apiUrl}/profile/{id}`, userProfile).pipe(
       catchError(this.handleError)
     );
   }
->>>>>>> 58bbcd1 (GET, PUT, DELETE, POST, fixed)
->>>>>>> 9aa444a (Resolved merge conflicts)
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('An error occurred:', error);
@@ -70,3 +57,4 @@ export class UserService {
     return throwError(() => new Error(error.message || 'An unexpected error occurred.'));
   }
 }
+
