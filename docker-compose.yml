@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:latest # Reference the local image explicitly
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: expense_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./expense-tracker.sql:/docker-entrypoint-initdb.d/expense-tracker.sql
+    networks:
+      - expense-tracker-network
+
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: "Dockerfile"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/expense_tracker
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - expense-tracker-network
+
+  frontend:
+    build:
+      context: "./expense-tracker-frontend"
+      dockerfile: "Dockerfile"
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - expense-tracker-network
+
+networks:
+  expense-tracker-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+

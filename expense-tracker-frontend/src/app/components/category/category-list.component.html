@@ -1,0 +1,59 @@
+<div class="category-form-container">
+  <div class="form-card">
+    <h2 class="form-title">{{ isEditing ? 'Update' : 'Add' }} Category</h2>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by Description"
+        class="search-input">
+
+      <button
+        (click)="onSearch()"
+        class="search-btn">Search</button>
+    </div>
+
+    <form (ngSubmit)="saveCategory()" class="category-form">
+      <div class="form-field">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          id="description"
+          [(ngModel)]="category.description"
+          name="description"
+          class="input-field"
+          placeholder="E.g. Grocery Shopping"
+          required
+        />
+      </div>
+
+      <div class="action-buttons">
+        <button
+          type="submit"
+          class="submit-button">
+          {{ isEditing ? 'Update Category' : 'Add Category' }}
+        </button>
+
+        <button
+          *ngIf="isEditing"
+          type="button"
+          class="delete-button"
+          (click)="deleteCategory()">
+          Delete Category
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="category-list-container">
+  <h3>Category List</h3>
+  <ul>
+    <li *ngFor="let category of categories">
+      <span>{{ category.description }} - {{ category.price | currency }}</span>
+
+      <button (click)="editCategory(category)">Edit</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,71 @@
+<div id="dashboard">
+  <div class="dashboard-header">
+    <h1>Expense Dashboard</h1>
+    <p>Start Date: {{ startDate }} | End Date: {{ endDate }}</p>
+    <p>Total Expenses: {{ totalExpenses | currency }}</p>
+    <p>Total Price: {{ totalPrice | currency }}</p>
+  </div>
+
+  <div class="expense-breakdown">
+    <h2>Expense Category Breakdown</h2>
+    <ul>
+      <li *ngFor="let category of expenseCategoryBreakdown">
+        <strong>{{ category.name }}:</strong> {{ category.total | currency }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="expense-list">
+    <h2>Expenses</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Price per Item</th>
+        <th>Total Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let expense of expenses">
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.amount | currency }}</td>
+        <td>{{ expense.price | currency }}</td>
+        <td>{{ expense.totalPrice | currency }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="expense-table-container">
+    <h3>Current Expenses</h3>
+    <table class="expense-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Total Price</th>
+        <th>Created At</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let expense of expenses">
+        <td>{{ expense.id }}</td>
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.price | currency }}</td>
+        <td>{{ expense.totalPrice | currency }}</td>
+        <td>{{ expense.updatedAt | date:'short' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="generate-pdf">
+    <button (click)="generateDashboardPDF()">Generate PDF</button>
+  </div>
+</div>
